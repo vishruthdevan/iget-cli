@@ -36,3 +36,47 @@ def make_api_call(url, endpoint_params, method="GET"):
 
     return response['json_data']
 
+
+def debug_access_token():
+    params = get_creds()
+    endpoint_params = dict()
+    endpoint_params['input_token'] = params['access_token']
+    endpoint_params['access_token'] = params['access_token']
+
+    url = params['graph_domain'] + '/debug_token'
+
+    response = make_api_call(url, endpoint_params)
+    print(response)
+
+
+def get_user_pages():
+    params = get_creds()
+    endpoint_params = dict()
+    endpoint_params['access_token'] = params['access_token']
+
+    url = params['endpoint_base'] + 'me/accounts'
+
+    response = make_api_call(url, endpoint_params)
+
+    print("Page Name:")
+    print(response['json_data']['data'][0]['name'])
+    print("\nPage Category:")
+    print(response['json_data']['data'][0]['category'])
+    print("\nPage Id:")
+    print(response['json_data']['data'][0]['id'])
+
+
+def get_instagram_account():
+    params = get_creds()
+    endpoint_params = dict()
+    endpoint_params['access_token'] = params['access_token']
+    endpoint_params['fields'] = 'instagram_business_account'
+
+    url = params['endpoint_base'] + params['page_id']
+
+    response = make_api_call(url, endpoint_params)
+    # return response
+    print("Page Id:")
+    print(response['json_data']['id'])
+    print("\nInstagram Business Account Id:")
+    print(response['json_data']['instagram_business_account']['id'])
