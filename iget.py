@@ -57,3 +57,43 @@ def usermedia(username):
         click.echo('Like count:' + str(i['like_count']))
         click.echo('Caption: ' + str(i['caption']))
     # click.echo(response)
+
+
+@ iget.command()
+@ click.option('--username', default=creds['instagram_username'], help="username")
+@ click.option('--link', required=True, help="link to post")
+def media(username, link):
+    params = utils.get_creds()
+    params['id'] = username
+    params['permalink'] = link
+    response = get_content.get_media_details(params)
+    click.echo("")
+    click.echo('Link: ' + str(response['permalink']))
+    click.echo('Id: ' + str(response['id']))
+    click.echo('Comment count: ' + str(response['comments_count']))
+    click.echo('Like count:' + str(response['like_count']))
+    click.echo('Caption: ' + str(response['caption']))
+    # click.echo(response)
+
+
+@ iget.command()
+@ click.option('--username', default=creds['instagram_username'])
+def userinsights(username):
+    params = utils.get_creds()
+    response = get_content.get_user_insights(params)
+    # for i in response['business_discovery']
+    click.echo(response)
+
+
+@ iget.command()
+@ click.option('--username', default=creds['instagram_username'])
+@ click.option('--link', required=True, help="link to post")
+def mediainsights(username, link):
+    params = utils.get_creds()
+    params['id'] = username
+    params['permalink'] = link
+    post = get_content.get_media_details(params)
+    params['media_id'] = post['id']
+    response = get_content.get_media_insights(params)
+    # for i in response['business_discovery']
+    click.echo(response)
