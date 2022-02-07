@@ -97,3 +97,16 @@ def mediainsights(username, link):
     response = get_content.get_media_insights(params)
     # for i in response['business_discovery']
     click.echo(response)
+
+
+@ iget.command()
+@ click.option('--caption', default='')
+@ click.option('--media_url', required=True, help="link to image")
+def post(caption, media_url):
+    params = utils.get_creds()
+    params['caption'] = caption
+    params['media_url'] = media_url
+    params['media_type'] = 'IMAGE'
+    media_id = post_content.create_media_object(params)
+    response = post_content.publish_media(media_id['id'], params)
+    click.echo(response.get('id', 'Could not post'))
