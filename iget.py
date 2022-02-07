@@ -110,3 +110,16 @@ def post(caption, media_url):
     media_id = post_content.create_media_object(params)
     response = post_content.publish_media(media_id['id'], params)
     click.echo(response.get('id', 'Could not post'))
+
+
+@iget.command()
+@click.option("--access_token", required=True)
+def set(access_token):
+    with open("credentials.json", "r") as jsonFile:
+        cred = json.load(jsonFile)
+    cred["access_token"] = access_token
+    with open("credentials.json", "w") as jsonFile:
+        json.dump(cred, jsonFile)
+
+    click.echo("Set successfully")
+# demopost = "https://i.ytimg.com/vi/Mu3BfD6wmPg/maxresdefault.jpg"
