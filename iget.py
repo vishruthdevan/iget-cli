@@ -114,10 +114,16 @@ def post(caption, media_url):
 
 @iget.command()
 @click.option("--access_token", required=True)
-def set(access_token):
+@click.option("--client_id")
+@click.option("--client_secret")
+def set(access_token, client_id, client_secret):
     with open("credentials.json", "r") as jsonFile:
         cred = json.load(jsonFile)
     cred["access_token"] = access_token
+    if client_id:
+        cred["client_id"] = client_id
+    if client_secret:
+        cred["client_secret"] = client_secret
     with open("credentials.json", "w") as jsonFile:
         json.dump(cred, jsonFile)
 
