@@ -116,16 +116,24 @@ def post(caption, media_url):
 @click.option("--access_token", required=True)
 @click.option("--client_id")
 @click.option("--client_secret")
-def set(access_token, client_id, client_secret):
+@click.option("--page_name")
+@click.option("--page_id")
+@click.option("--instagram_account_id")
+@click.option("--instagram_username")
+def set(access_token, client_id, client_secret, page_name, page_id, instagram_account_id, instagram_username):
     with open("credentials.json", "r") as jsonFile:
-        cred = json.load(jsonFile)
-    cred["access_token"] = access_token
-    if client_id:
-        cred["client_id"] = client_id
-    if client_secret:
-        cred["client_secret"] = client_secret
+        credentials = json.load(jsonFile)
+    
+    credentials["access_token"] = access_token
+    credentials["client_id"] = client_id
+    credentials["client_secret"] = client_secret
+    credentials["page_name"] = page_name
+    credentials["page_id"] = page_id
+    credentials["instagram_account_id"] = instagram_account_id
+    credentials["instagram_username"] = instagram_username
+
     with open("credentials.json", "w") as jsonFile:
-        json.dump(cred, jsonFile)
+        json.dump(credentials, jsonFile)
 
     click.echo("Set successfully")
 # demopost = "https://i.ytimg.com/vi/Mu3BfD6wmPg/maxresdefault.jpg"
