@@ -5,19 +5,21 @@ import json
 
 def get_creds():
     creds = dict()
-    creds['access_token'] = json.load(
-        open("credentials.json", "r"))['access_token']
-    creds['client_id'] = '2233159383499423'
-    creds['client_secret'] = 'e9a6122388aa26d71fe693c35d0b0f6f'
+    creds = json.load(open("credentials.json", "r"))
+    
     creds['graph_domain'] = 'https://graph.facebook.com/'
     creds['graph_version'] = 'v12.0'
     creds['endpoint_base'] = creds['graph_domain'] + \
         creds['graph_version'] + '/'
     creds['debug'] = 'no'
-    creds['page_name'] = 'vishruth.devan234'
-    creds['page_id'] = '105316455408894'
-    creds['instagram_account_id'] = '17841451798640055'
-    creds['instagram_username'] = 'vishruth.devan234'
+    
+    # creds['access_token'] = ''
+    # creds['client_id'] = '2233159383499423'
+    # creds['client_secret'] = 'e9a6122388aa26d71fe693c35d0b0f6f'
+    # creds['page_name'] = 'vishruth.devan234'
+    # creds['page_id'] = '105316455408894'
+    # creds['instagram_account_id'] = '17841451798640055'
+    # creds['instagram_username'] = 'vishruth.devan234'
 
     return creds
 
