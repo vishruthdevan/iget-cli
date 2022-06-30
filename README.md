@@ -1,5 +1,5 @@
 # iget-cli
-Command Line Tool that is used for testing the Instagram Graph API. Get data about instagram posts and users of business and creator accounts using. CLI written in python with click.
+Command Line Tool that is used for testing the Instagram Graph API. Get data about instagram posts and users of business and creator accounts. CLI written in python with click.
 
 ### Install
 - It is recommended to create and activate a virtual environment
